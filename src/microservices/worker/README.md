@@ -1,0 +1,2 @@
+PROJECT=src\microservices\worker
+POST_DEPLOYMENT_ACTION=postdeploy.cmd
