@@ -22,7 +22,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: 2. Run postdeploy npm script
 echo Transpiling TypeScript in %DEPLOYMENT_TARGET%
 pushd "%DEPLOYMENT_TARGET%"
-call :ExecuteCmd npm postdeploy
+call :ExecuteCmd npm run postdeploy
 IF !ERRORLEVEL! NEQ 0 goto error
 popd
 
