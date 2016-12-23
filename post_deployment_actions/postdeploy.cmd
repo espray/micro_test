@@ -7,40 +7,6 @@
 :: DEPLOYMENT_SOURCE=%~dp0%.
 :: DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
 
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Utility Functions
-:: -----------------
-
-:SelectNodeVersion
-
-IF DEFINED KUDU_SELECT_NODE_VERSION_CMD (
-  :: The following are done only on Windows Azure Websites environment
-  call %KUDU_SELECT_NODE_VERSION_CMD% "%DEPLOYMENT_SOURCE%" "%DEPLOYMENT_TARGET%" "%DEPLOYMENT_TEMP%"
-  IF !ERRORLEVEL! NEQ 0 goto error
-
-  IF EXIST "%DEPLOYMENT_TEMP%\__nodeVersion.tmp" (
-    SET /p NODE_EXE=<"%DEPLOYMENT_TEMP%\__nodeVersion.tmp"
-    IF !ERRORLEVEL! NEQ 0 goto error
-  )
-  
-  IF EXIST "%DEPLOYMENT_TEMP%\__npmVersion.tmp" (
-    SET /p NPM_JS_PATH=<"%DEPLOYMENT_TEMP%\__npmVersion.tmp"
-    IF !ERRORLEVEL! NEQ 0 goto error
-  )
-
-  IF NOT DEFINED NODE_EXE (
-    SET NODE_EXE=node
-  )
-
-  SET NPM_CMD="!NODE_EXE!" "!NPM_JS_PATH!"
-) ELSE (
-  SET NPM_CMD=npm
-  SET NODE_EXE=node
-)
-
-goto :EOF
-
 echo Post deployment
 
 setlocal
@@ -48,7 +14,7 @@ setlocal
 :: 1. Install development npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --development
+  call :ExecuteCmd npm install --development
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
@@ -56,7 +22,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: 2. Run postdeploy npm script
 echo Transpiling TypeScript in %DEPLOYMENT_TARGET%
 pushd "%DEPLOYMENT_TARGET%"
-call :ExecuteCmd !NPM_CMD! postdeploy
+call :ExecuteCmd npm postdeploy
 IF !ERRORLEVEL! NEQ 0 goto error
 popd
 
