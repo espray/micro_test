@@ -16,12 +16,14 @@ setlocal
 :: 1. Copy DEPLOYMENTROOT_SOURCE folder to DEPLOYMENT_SOURCE
 IF DEFINED DEPLOYMENTROOT_SOURCE (
   echo Copying files %DEPLOYMENTROOT_SOURCE% to %DEPLOYMENT_TARGET%
-  xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S
+  xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S /Q
 )
 
 :: 2. Install development npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
+  echo "%DEPLOYMENT_TARGET%\package.json" found
+  
   call :ExecuteCmd npm install --development
   
   echo %DEPLOYMENT_TARGET% npm install --development
