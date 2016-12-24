@@ -3,4 +3,4 @@
 **/*.log
 src/**/*.js
 src/**/*.js.map
-package.json
+./package.json

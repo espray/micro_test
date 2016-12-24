@@ -1,0 +1,17 @@
+{
+  "name": "tracker.prune",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "src": "file:../src"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BNG",
+  "license": "ISC",
+  "engines": {
+    "node": "6.9.1"
+  }
+}
