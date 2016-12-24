@@ -13,7 +13,13 @@ echo Post deployment
 
 setlocal
 
-:: 1. Install development npm packages
+:: 1. Copy DEPLOYMENTROOT_SOURCE folder to DEPLOYMENT_SOURCE
+IF DEFINED DEPLOYMENTROOT_SOURCE (
+  echo Copying files %DEPLOYMENTROOT_SOURCE% to %DEPLOYMENT_TARGET%
+  xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S
+)
+
+:: 2. Install development npm packages
 for /d %%d in (..\wwwroot\*) do (
   pushd %%d
 
@@ -27,7 +33,7 @@ for /d %%d in (..\wwwroot\*) do (
   popd
 )
 
-:: 2. Run postdeploy npm script
+:: 3. Run postdeploy npm script
 echo Run npm postdeploy script
 for /d %%d in (..\wwwroot\*) do (
   pushd %%d
@@ -42,11 +48,20 @@ for /d %%d in (..\wwwroot\*) do (
   popd
 )
 
-:: 3. Copy DEPLOYMENTROOT_SOURCE folder to DEPLOYMENT_SOURCE
-rem IF DEFINED DEPLOYMENTROOT_SOURCE (
-rem  echo Copying files %DEPLOYMENTROOT_SOURCE% to %DEPLOYMENT_TARGET%
-rem  xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S
-rem )
+:: 4. Run postdeploy npm script
+echo Run npm test script
+for /d %%d in (..\wwwroot\*) do (
+  pushd %%d
+
+  if exist package.json (
+    echo %%d npm run test
+    call npm run test
+  ) else (
+    echo %%d no package.json found
+  )
+
+  popd
+)
 
 endlocal
 
