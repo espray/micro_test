@@ -53,5 +53,5 @@ endlocal
 echo record deployment timestamp
 date /t >> ..\deployment.log
 time /t >> ..\deployment.log
-echo ------------------->> ..\deployment.log
-echo Finished post deploy successfully
+echo ---------------------- >> ..\deployment.log
+echo Deployment done
