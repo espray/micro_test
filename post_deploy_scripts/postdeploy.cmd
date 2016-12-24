@@ -19,8 +19,6 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
   xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S /Q
 )
 
-goto Deployment
-
 :: Utility Functions
 :: -----------------
 
