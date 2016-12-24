@@ -3,5 +3,3 @@
 **/*.log
 src/**/*.js
 src/**/*.js.map
-./package.json
-./microservices/package.json
