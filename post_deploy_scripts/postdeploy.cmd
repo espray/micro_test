@@ -20,14 +20,14 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
 )
 
 :: 2. Install development npm packages
+echo ===================================================================
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  echo ===================================================================
   echo %DEPLOYMENT_TARGET%\package.json found
 
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm install
-  call :ExecuteCmd !NPM_CMD! install
+  call :ExecuteCmd NPM_CMD install
   IF !ERRORLEVEL! NEQ 0 goto error
 
   echo ===================================================================
@@ -43,6 +43,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 ) ELSE (
   echo no %DEPLOYMENT_TARGET%\package.json found
+  echo ===================================================================
 )
 
 goto end
