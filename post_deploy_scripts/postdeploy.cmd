@@ -19,6 +19,8 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
   xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S /Q
 )
 
+call npm -v
+
 :: 2. Install development npm packages
 echo ===================================================================
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
