@@ -25,16 +25,16 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   echo %DEPLOYMENT_TARGET%\package.json found
 
   echo %DEPLOYMENT_TARGET% npm install --development
-  call :ExecuteCmd npm install --development
-  IF !ERRORLEVEL! NEQ 0 goto error
+  REM call :ExecuteCmd npm install --development
+  REM IF !ERRORLEVEL! NEQ 0 goto error
   
   echo %DEPLOYMENT_TARGET% npm run postdeploy
-  call :ExecuteCmd npm run postdeploy
-  IF !ERRORLEVEL! NEQ 0 goto error
+  REM call :ExecuteCmd npm run postdeploy
+  REM IF !ERRORLEVEL! NEQ 0 goto error
 
   echo %DEPLOYMENT_TARGET% npm run test
-  call  :ExecuteCmd npm run test
-  IF !ERRORLEVEL! NEQ 0 goto error
+  REM call  :ExecuteCmd npm run test
+  REM IF !ERRORLEVEL! NEQ 0 goto error
 
   popd
 ) ELSE (
