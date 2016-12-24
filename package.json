@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "micro_test",
   "engines": {
-    "node": "6.9.x"
+    "node": "6.9.1"
   },
   "scripts": {
     "check": "npm run lint && npm run build && npm run nsp check",
