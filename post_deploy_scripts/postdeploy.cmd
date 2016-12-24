@@ -27,7 +27,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm install
-  call :ExecuteCmd npm install
+  call :ExecuteCmd !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
 
   echo ===================================================================
