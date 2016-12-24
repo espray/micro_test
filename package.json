@@ -31,12 +31,14 @@
     "url": "https://github.com/espray/micro_test/issues"
   },
   "homepage": "https://github.com/espray/micro_test#readme",
-  "devDependencies": {
+  "optionalDependencies": {
     "@types/bunyan": "0.0.34",
     "@types/mocha": "^2.2.33",
     "@types/nconf": "0.0.32",
     "@types/should": "^8.1.30",
-    "@types/source-map-support": "^0.2.28",
+    "@types/source-map-support": "^0.2.28"
+  },
+  "devDependencies": {
     "mocha": "^3.2.0",
     "rimraf": "^2.5.4",
     "should": "^11.1.2",
