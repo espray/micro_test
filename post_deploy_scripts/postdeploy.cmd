@@ -22,22 +22,20 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
 :: 2. Install development npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  echo "%DEPLOYMENT_TARGET%\package.json" found
-  
-  call :ExecuteCmd npm install --development
-  
+  echo %DEPLOYMENT_TARGET%\package.json found
+
   echo %DEPLOYMENT_TARGET% npm install --development
-  call :ExecuteCmd npm install --development
+  call npm install --development
   
   echo %DEPLOYMENT_TARGET% npm run postdeploy
-  call :ExecuteCmd npm run postdeploy
+  call npm run postdeploy
 
   echo %DEPLOYMENT_TARGET% npm run test
-  call :ExecuteCmd npm run test
+  call  npm run test
 
   popd
 ) ELSE (
-  echo no "%DEPLOYMENT_TARGET%\package.json" found
+  echo no %DEPLOYMENT_TARGET%\package.json found
 )
 
 goto end
