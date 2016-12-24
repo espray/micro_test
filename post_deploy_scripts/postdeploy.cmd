@@ -13,6 +13,8 @@ echo Post deployment
 
 setlocal
 
+echo node --version
+
 :: 1. Copy DEPLOYMENTROOT_SOURCE folder to DEPLOYMENT_SOURCE
 IF DEFINED DEPLOYMENTROOT_SOURCE (
   echo Copying files %DEPLOYMENTROOT_SOURCE% to %DEPLOYMENT_TARGET%
