@@ -12,7 +12,7 @@
     "testwithoutcheck": "npm run lint && npm run build && npm run test",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec -u bdd --no-timeouts --recursive src/**/tests",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
-    "preinstall": "node ./preinstall.js",
+    "preinstall_bad": "node ./preinstall.js",
     "postdeploy": "npm run build && mocha --no-timeouts --colors --recursive src/**/tests",
     "lint": "npm run tslint",
     "build": "npm run tsc",
