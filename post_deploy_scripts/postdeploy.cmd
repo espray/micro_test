@@ -20,53 +20,49 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
 )
 
 :: 2. Install development npm packages
-for /d %%d in (..\wwwroot\*) do (
-  pushd %%d
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd npm install --development
+  
+  echo %DEPLOYMENT_TARGET% npm install --development
+  call :ExecuteCmd npm install --development
+  
+  echo %DEPLOYMENT_TARGET% npm run postdeploy
+  call :ExecuteCmd npm run postdeploy
 
-  if exist package.json (
-    echo %%d npm install --development
-    call npm install --development
-  ) else (
-    echo %%d no package.json found
-  )
-
-  popd
-)
-
-:: 3. Run postdeploy npm script
-echo Run npm postdeploy script
-for /d %%d in (..\wwwroot\*) do (
-  pushd %%d
-
-  if exist package.json (
-    echo %%d npm run postdeploy
-    call npm run postdeploy
-  ) else (
-    echo %%d no package.json found
-  )
+  echo %DEPLOYMENT_TARGET% npm run test
+  call :ExecuteCmd npm run test
 
   popd
+) ELSE (
+  echo no "%DEPLOYMENT_TARGET%\package.json" found
 )
 
-:: 4. Run postdeploy npm script
-echo Run npm test script
-for /d %%d in (..\wwwroot\*) do (
-  pushd %%d
+goto end
 
-  if exist package.json (
-    echo %%d npm run test
-    call npm run test
-  ) else (
-    echo %%d no package.json found
-  )
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  popd
-)
+:: Execute command routine that will echo out when error
+:ExecuteCmd
+setlocal
+set _CMD_=%*
+call %_CMD_%
+if "%ERRORLEVEL%" NEQ "0" echo Failed exitCode=%ERRORLEVEL%, command=%_CMD_%
+exit /b %ERRORLEVEL%
 
+:error
+endlocal
+echo An error has occurred during web site deployment.
+call :exitSetErrorLevel
+call :exitFromFunction 2>nul
+
+:exitSetErrorLevel
+exit /b 1
+
+:exitFromFunction
+()
+
+:end
 endlocal
 
-echo record deployment timestamp
-date /t >> ..\deployment.log
-time /t >> ..\deployment.log
-echo ---------------------- >> ..\deployment.log
-echo Deployment done
+echo Finished post deploy successfully.
