@@ -4,7 +4,7 @@
 :: Post deployment
 :: ----------
 
-:: SCM_POST_DEPLOYMENT_ACTIONS_PATH=post_deployment_actions=postdeploy.cmd
+:: SCM_POST_DEPLOYMENT_ACTIONS_PATH=PostDeployScripts
 :: ARTIFACTS=%~dp0%..\artifacts
 :: DEPLOYMENT_SOURCE=%~dp0%.
 :: DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
