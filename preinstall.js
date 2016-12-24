@@ -13,7 +13,8 @@ console.log('===================================================================
 
 function npm_install_recursive(folder)
 {
-    const has_package_json = fs.existsSync(path.join(folder, 'package.json'))
+    const has_package_json = fs.existsSync(path.join(folder, 'package.json'));
+    let subfolder
 
     if (!has_package_json && path.basename(folder) !== 'code')
     {
@@ -31,7 +32,7 @@ function npm_install_recursive(folder)
         npm_install(folder)
     }
 
-    for (let subfolder of subfolders(folder))
+    for (subfolder of subfolders(folder))
     {
         npm_install_recursive(subfolder)
     }
