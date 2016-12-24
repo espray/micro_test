@@ -20,6 +20,9 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
 )
 
 call npm -v
+@echo on
+SET
+@echo off
 
 :: 2. Install development npm packages
 echo ===================================================================
