@@ -11,10 +11,11 @@ console.log('===================================================================
 console.log('Performing "npm install" inside root folder')
 console.log('===================================================================')
 
+var subfolder
+
 function npm_install_recursive(folder)
 {
     const has_package_json = fs.existsSync(path.join(folder, 'package.json'));
-    var subfolder
 
     if (!has_package_json && path.basename(folder) !== 'code')
     {
