@@ -8,7 +8,7 @@ npm_install_recursive(root);
 // Since this script is intended to be run as a "preinstall" command,
 // it will be `npm install` inside root in the end.
 console.log('===================================================================')
-console.log(`Performing "npm install" inside root folder`)
+console.log('Performing "npm install" inside root folder')
 console.log('===================================================================')
 
 function npm_install_recursive(folder)
@@ -25,7 +25,7 @@ function npm_install_recursive(folder)
     if (folder !== root && has_package_json)
     {
         console.log('===================================================================')
-        console.log(`Performing "npm install" inside ${folder === root ? 'root folder' : './' + path.relative(root, folder)}`)
+        //console.log('Performing "npm install" inside ${folder === root ? 'root folder' : './' + path.relative(root, folder)}')"
         console.log('===================================================================')
 
         npm_install(folder)
