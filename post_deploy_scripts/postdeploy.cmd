@@ -19,6 +19,44 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
   xcopy %DEPLOYMENTROOT_SOURCE% %DEPLOYMENT_TARGET% /Y /S /Q
 )
 
+goto Deployment
+
+:: Utility Functions
+:: -----------------
+
+REM :SelectNodeVersion
+
+IF DEFINED KUDU_SELECT_NODE_VERSION_CMD (
+  :: The following are done only on Windows Azure Websites environment
+
+  IF EXIST "%DEPLOYMENT_TEMP%\__nodeVersion.tmp" (
+    SET /p NODE_EXE=<"%DEPLOYMENT_TEMP%\__nodeVersion.tmp"
+    IF !ERRORLEVEL! NEQ 0 goto error
+  )
+  
+  IF EXIST "%DEPLOYMENT_TEMP%\__npmVersion.tmp" (
+    SET /p NPM_JS_PATH=<"%DEPLOYMENT_TEMP%\__npmVersion.tmp"
+    IF !ERRORLEVEL! NEQ 0 goto error
+  )
+
+  IF NOT DEFINED NODE_EXE (
+    SET NODE_EXE=node
+  )
+
+  SET NPM_CMD="!NODE_EXE!" "!NPM_JS_PATH!"
+) ELSE (
+  SET NPM_CMD=npm
+  SET NODE_EXE=node
+)
+
+REM goto :EOF
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Deployment
+:: ----------
+
+REM :Deployment
+
 call npm -v
 @echo on
 SET
@@ -32,7 +70,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm install
-  call :ExecuteCmd NPM_CMD install
+  call :ExecuteCmd !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
 
   echo ===================================================================
