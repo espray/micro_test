@@ -1,0 +1,20 @@
+{
+  "name": "micro_test",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "tslint": "tslint"
+  },
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "devDependencies": {
+    "tslint": "^4.0.2",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {}
+}

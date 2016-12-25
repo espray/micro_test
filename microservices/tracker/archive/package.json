@@ -7,7 +7,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "src": "file:../src"
+    "shared": "file:../.shared/svc"
   },
   "author": ""
 }
