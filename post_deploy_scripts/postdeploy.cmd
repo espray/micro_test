@@ -28,26 +28,31 @@ REM :Deployment
 call node -v
 call npm -v
 
-:: 2. Install development npm packages
 echo ===================================================================
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   echo %DEPLOYMENT_TARGET%\package.json found
 
+  :: 2. Install development npm packages
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm install --development
-  call :ExecuteCmd npm install --development
-  IF !ERRORLEVEL! NEQ 0 goto error
+  call npm install --development
+  REM call :ExecuteCmd npm install --development
+  REM IF !ERRORLEVEL! NEQ 0 goto error
 
+  :: 3. Run npm postdeploy
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run postdeploy
-  call :ExecuteCmd npm run postdeploy
-  IF !ERRORLEVEL! NEQ 0 goto error
+  npm run postdeploy
+  REM call :ExecuteCmd npm run postdeploy
+  REM IF !ERRORLEVEL! NEQ 0 goto error
 
+  :: 4. Run npm test
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run test
-  call  :ExecuteCmd npm run test
-  IF !ERRORLEVEL! NEQ 0 goto error
+  npm run test
+  REM call  :ExecuteCmd npm run test
+  REM IF !ERRORLEVEL! NEQ 0 goto error
 
   popd
 ) ELSE (
