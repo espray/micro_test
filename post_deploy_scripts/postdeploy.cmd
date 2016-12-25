@@ -25,10 +25,8 @@ IF DEFINED DEPLOYMENTROOT_SOURCE (
 
 REM :Deployment
 
+call node -v
 call npm -v
-@echo on
-SET
-@echo off
 
 :: 2. Install development npm packages
 echo ===================================================================
@@ -43,13 +41,13 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run postdeploy
-  REM call :ExecuteCmd npm run postdeploy
-  REM IF !ERRORLEVEL! NEQ 0 goto error
+  call :ExecuteCmd npm run postdeploy
+  IF !ERRORLEVEL! NEQ 0 goto error
 
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run test
-  REM call  :ExecuteCmd npm run test
-  REM IF !ERRORLEVEL! NEQ 0 goto error
+  call  :ExecuteCmd npm run test
+  IF !ERRORLEVEL! NEQ 0 goto error
 
   popd
 ) ELSE (
