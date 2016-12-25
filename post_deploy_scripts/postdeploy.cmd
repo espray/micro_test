@@ -37,21 +37,21 @@ IF EXIST %%d\package.json (
   :: 2. Install development npm packages
   echo ===================================================================
   echo %%d npm install --development
-  call npm install --development
+  REM call npm install --development
   REM call :ExecuteCmd npm install --development
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 3. Run npm postdeploy
   echo ===================================================================
   echo %%d npm run postdeploy
-  call npm run postdeploy
+  REM call npm run postdeploy
   REM call :ExecuteCmd npm run postdeploy
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 4. Run npm test
   echo ===================================================================
   echo %%d npm run test
-  call npm run test
+  REM call npm run test
   REM call  :ExecuteCmd npm run test
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
