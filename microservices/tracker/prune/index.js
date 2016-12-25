@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require("../src/microservices/tracker/prune");
+module.exports = require("./src/microservices/tracker/prune");
