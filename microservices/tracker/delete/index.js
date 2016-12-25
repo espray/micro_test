@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require('src/microservices/tracker/delete');
+module.exports = require("./src/microservices/tracker/delete");

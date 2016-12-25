@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require('src/microservices/tracker/status');
+module.exports = require("./src/microservices/tracker/status");
