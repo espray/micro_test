@@ -8,11 +8,11 @@
     "suppressTaskName": true,
     "tasks": [
         {
-            "taskName": "install",
+            "taskName": "Install",
             "args": ["install"]
         },
         {
-            "taskName": "update",
+            "taskName": "Update",
             "args": ["update"]
         },
         {

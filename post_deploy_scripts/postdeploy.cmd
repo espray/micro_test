@@ -29,29 +29,28 @@ call node -v
 call npm -v
 
 echo ===================================================================
-for /d %%d in (%DEPLOYMENT_TARGET%\*) do (
-IF EXIST %%d\package.json (
-  pushd %%d
-  echo %%d\package.json found
+IF EXIST %DEPLOYMENT_TARGET%\\package.json (
+  pushd %DEPLOYMENT_TARGET%\
+  echo %DEPLOYMENT_TARGET%\package.json found
 
   :: 2. Install development npm packages
   echo ===================================================================
-  echo %%d npm install --development
-  REM call npm install --development
+  echo %DEPLOYMENT_TARGET% npm install --development
+  call npm install --development
   REM call :ExecuteCmd npm install --development
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 3. Run npm postdeploy
   echo ===================================================================
-  echo %%d npm run postdeploy
-  REM call npm run postdeploy
+  echo %DEPLOYMENT_TARGET% npm run postdeploy
+  call npm run postdeploy
   REM call :ExecuteCmd npm run postdeploy
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 4. Run npm test
   echo ===================================================================
-  echo %%d npm run test
-  REM call npm run test
+  echo %DEPLOYMENT_TARGET% npm run test
+  call npm run test
   REM call  :ExecuteCmd npm run test
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
@@ -59,7 +58,6 @@ IF EXIST %%d\package.json (
 ) ELSE (
   echo no %%d\package.json found
   echo ===================================================================
-)
 )
 goto end
 
