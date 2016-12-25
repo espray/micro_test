@@ -29,37 +29,38 @@ call node -v
 call npm -v
 
 echo ===================================================================
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  echo %DEPLOYMENT_TARGET%\package.json found
+for /d %%d in (..\wwwroot\*) do (
+IF EXIST %%d\package.json" (
+  pushd %%d
+  echo %%d\package.json found
 
   :: 2. Install development npm packages
   echo ===================================================================
-  echo %DEPLOYMENT_TARGET% npm install --development
+  echo %%d npm install --development
   call npm install --development
   REM call :ExecuteCmd npm install --development
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 3. Run npm postdeploy
   echo ===================================================================
-  echo %DEPLOYMENT_TARGET% npm run postdeploy
+  echo %%d npm run postdeploy
   call npm run postdeploy
   REM call :ExecuteCmd npm run postdeploy
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 4. Run npm test
   echo ===================================================================
-  echo %DEPLOYMENT_TARGET% npm run test
+  echo %%d npm run test
   call npm run test
   REM call  :ExecuteCmd npm run test
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   popd
 ) ELSE (
-  echo no %DEPLOYMENT_TARGET%\package.json found
+  echo no %%d\package.json found
   echo ===================================================================
 )
-
+)
 goto end
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
