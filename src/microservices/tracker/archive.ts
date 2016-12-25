@@ -1,7 +1,7 @@
-import { FunctionRequest, HttpContext, HttpStatusCodes } from "azure-functions";
+// import { FunctionRequest, HttpContext, HttpStatusCodes } from "azure-functions";
 
-export default (context: HttpContext, req: FunctionRequest) => {
-    context.res.status = HttpStatusCodes.OK;
+export default (context: azureFunctions.HttpContext, req: azureFunctions.FunctionRequest) => {
+    context.res.status = azureFunctions.HttpStatusCodes.OK;
     context.log("Test");
     context.done();
 };

@@ -1,4 +1,4 @@
-declare module "azure-functions" {
+declare namespace azureFunctions {
     export interface Context {
         invocationId: string;
         bindingData: any;
