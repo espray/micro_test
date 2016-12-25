@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require("shared/src/microservices/tracker/archive");
+module.exports = require("../src/microservices/tracker/archive");
