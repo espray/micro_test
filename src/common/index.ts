@@ -1,3 +1,4 @@
+import * as Azure from "./azure/azure";
 import { Config } from "./configuration/config";
 import { ApplicationLogger } from "./diagnostics/logger";
 import { Ensure, Errors } from "./errors/errors";
@@ -9,6 +10,7 @@ let Logger = {
 };
 
 export {
+    Azure,
     Config,
     Constants,
     Ensure,
