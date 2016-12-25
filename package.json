@@ -20,7 +20,7 @@
     "mocha": "mocha",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "tslint": "tslint ./src/**.ts"
+    "tslint": "tslint ./src/**/*.ts"
   },
   "repository": {
     "type": "git",
