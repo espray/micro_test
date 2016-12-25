@@ -29,8 +29,8 @@ call node -v
 call npm -v
 
 echo ===================================================================
-for /d %%d in (..\wwwroot\*) do (
-IF EXIST %%d\package.json" (
+for /d %%d in (%DEPLOYMENT_TARGET%\*) do (
+IF EXIST %%d\package.json (
   pushd %%d
   echo %%d\package.json found
 
