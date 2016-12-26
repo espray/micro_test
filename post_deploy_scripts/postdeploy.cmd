@@ -43,14 +43,15 @@ IF EXIST %DEPLOYMENT_TARGET%\\package.json (
   :: 3. Run npm postdeploy
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run postdeploy
-  call npm run postdeploy
+  call npm run tsc
+  REM call npm run postdeploy
   REM call :ExecuteCmd npm run postdeploy
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
   :: 4. Run npm test
   echo ===================================================================
   echo %DEPLOYMENT_TARGET% npm run test
-  call npm run test
+  REM call npm run test
   REM call  :ExecuteCmd npm run test
   REM IF !ERRORLEVEL! NEQ 0 goto error
 
